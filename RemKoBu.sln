@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RemKoBu.WPF", "src\RemKoBu.WPF\RemKoBu.WPF.csproj", "{EE30BB34-9E7E-4F9C-B79A-CAC505A79D15}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{31841E1A-2FC9-4680-9AFD-209983C45E97}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C238250A-503A-45D0-B185-F8B3D1B1B817}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemKoBu.UnitTests", "tests\RemKoBu.UnitTests\RemKoBu.UnitTests.csproj", "{A601F3E2-DAC0-403E-88A5-90A6BA3BD373}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RemKoBu.UnitTests", "tests\RemKoBu.UnitTests\RemKoBu.UnitTests.csproj", "{A601F3E2-DAC0-403E-88A5-90A6BA3BD373}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemKoBu.Core", "src\RemKoBu.Core\RemKoBu.Core.csproj", "{79AA1DF3-B0C2-4A49-B044-41D6181C82EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RemKoBu.Core", "src\RemKoBu.Core\RemKoBu.Core.csproj", "{79AA1DF3-B0C2-4A49-B044-41D6181C82EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemKoBu.Data", "src\RemKoBu.Data\RemKoBu.Data.csproj", "{1835AB96-9F95-4718-A9BB-25D42B3C0BE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RemKoBu.Data", "src\RemKoBu.Data\RemKoBu.Data.csproj", "{1835AB96-9F95-4718-A9BB-25D42B3C0BE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemKoBu.UI", "src\RemKoBu.UI\RemKoBu.UI.csproj", "{7E87CC80-BE27-488D-BE52-557ADDE5ED72}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EE30BB34-9E7E-4F9C-B79A-CAC505A79D15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EE30BB34-9E7E-4F9C-B79A-CAC505A79D15}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EE30BB34-9E7E-4F9C-B79A-CAC505A79D15}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EE30BB34-9E7E-4F9C-B79A-CAC505A79D15}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A601F3E2-DAC0-403E-88A5-90A6BA3BD373}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A601F3E2-DAC0-403E-88A5-90A6BA3BD373}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A601F3E2-DAC0-403E-88A5-90A6BA3BD373}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -37,15 +33,19 @@ Global
 		{1835AB96-9F95-4718-A9BB-25D42B3C0BE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1835AB96-9F95-4718-A9BB-25D42B3C0BE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1835AB96-9F95-4718-A9BB-25D42B3C0BE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E87CC80-BE27-488D-BE52-557ADDE5ED72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E87CC80-BE27-488D-BE52-557ADDE5ED72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E87CC80-BE27-488D-BE52-557ADDE5ED72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E87CC80-BE27-488D-BE52-557ADDE5ED72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{EE30BB34-9E7E-4F9C-B79A-CAC505A79D15} = {31841E1A-2FC9-4680-9AFD-209983C45E97}
 		{A601F3E2-DAC0-403E-88A5-90A6BA3BD373} = {C238250A-503A-45D0-B185-F8B3D1B1B817}
 		{79AA1DF3-B0C2-4A49-B044-41D6181C82EC} = {31841E1A-2FC9-4680-9AFD-209983C45E97}
 		{1835AB96-9F95-4718-A9BB-25D42B3C0BE8} = {31841E1A-2FC9-4680-9AFD-209983C45E97}
+		{7E87CC80-BE27-488D-BE52-557ADDE5ED72} = {31841E1A-2FC9-4680-9AFD-209983C45E97}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D3D6EB7E-B88B-4C16-A7E3-970916CBBA57}
