@@ -13,9 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="remkobudb.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <ProjectReference Include="..\..\src\RemKoBu.Data\RemKoBu.Data.csproj" />
   </ItemGroup>
 
 </Project>

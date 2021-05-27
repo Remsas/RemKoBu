@@ -16,22 +16,22 @@ namespace RemKoBu.TryOutCon
             string connectionString = @"Data Source=.\remkobudb.db;";
 
             // In die Datenbank speichern
-            //string sql = "INSERT INTO spice (spice_name, image_path) " +
-            //             "VALUES (@spice_name, @image_path)";
+            string sql = "INSERT INTO spice (spice_name, image_path) " +
+                         "VALUES (@spice_name, @image_path)";
 
-            //Dictionary<string, object> parameters = new Dictionary<string, object>
-            //{
-            //    {"@spice_name", "Pfeffer"},
-            //    {"@image_path", @"der\pfad\zum\glueck"}
-            //};
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                {"@spice_name", "Pfeffer"},
+                {"@image_path", @"der\pfad\zum\glueck"}
+            };
 
-            //SqliteDataAccess.SaveData(sql, parameters, connectionString);
+            SqliteDataAccess.SaveData(sql, parameters, connectionString);
 
 
             // Aus der Datenbank lesen
             ObservableCollection<SpiceModel> spices = new ObservableCollection<SpiceModel>();
 
-            string sql = "SELECT * FROM spice ORDER BY spice_name COLLATE NOCASE ASC";
+            sql = "SELECT * FROM spice ORDER BY spice_name COLLATE NOCASE ASC";
             var spiceList =
                 SqliteDataAccess.LoadData<SpiceModel>(sql, new Dictionary<string, object>(), connectionString);
             spiceList.ForEach(x => Console.WriteLine(x.spice_id + " " + x.spice_name + " " + x.image_path));
