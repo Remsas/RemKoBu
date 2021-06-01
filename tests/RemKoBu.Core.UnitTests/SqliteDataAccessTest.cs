@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using Microsoft.Data.Sqlite;
 using NUnit.Framework;
 using RemKoBu.Core.DataAccess;
@@ -19,15 +17,15 @@ namespace RemKoBu.Core.UnitTests
         public void SaveData_InsertSpice_SpiceReadable()
         {
             // Arrange
-            string sqlStatement = "INSERT INTO spice (SpiceName, ImagePath) " +
+            const string sqlStatement = "INSERT INTO spice (SpiceName, ImagePath) " +
                                   "VALUES (@SpiceName, @ImagePath)";
-            string connectionString = @"Data Source=.\remkobudb_test.db;";
+            const string connectionString = @"Data Source=.\remkobudb_test.db;";
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
                 {"@SpiceName", "Pfeffer"},
                 {"@ImagePath", @"der\pfad\zum\glueck"}
             };
-            string expected = "Pfeffer";
+            const string expected = "Pfeffer";
             IDataAccess sqliteDataAccess = new SqliteDataAccess();
             // Act
             sqliteDataAccess.SaveData(sqlStatement, parameters,connectionString);
@@ -40,9 +38,8 @@ namespace RemKoBu.Core.UnitTests
         public void LoadData_LoadSpice_FindSpecificSpiceName()
         {
             // Arrange
-            ObservableCollection<SpiceModel> spices = new ObservableCollection<SpiceModel>();
-            string connectionString = @"Data Source=.\remkobudb_test.db;";
-            string sqlStatement = "SELECT SpiceName FROM spice WHERE SpiceName = 'Salz'";
+            const string connectionString = @"Data Source=.\remkobudb_test.db;";
+            const string sqlStatement = "SELECT SpiceName FROM spice WHERE SpiceName = 'Salz'";
             AddSalzToDatabaseInTableSpice();
             IDataAccess sqliteDataAccess = new SqliteDataAccess();
             // Act
@@ -53,35 +50,30 @@ namespace RemKoBu.Core.UnitTests
             StringAssert.AreEqualIgnoringCase("Salz", actual);
         }
         
-        private string ReadPfefferFromDatabaseInTableSpice()
+        private static string ReadPfefferFromDatabaseInTableSpice()
         {
             string output = "";
 
-            using (var connection = new SqliteConnection(@"Data Source=.\remkobudb_test.db;"))
+            using var connection = new SqliteConnection(@"Data Source=.\remkobudb_test.db;");
+            connection.Open();
+            var command = connection.CreateCommand();
+            command.CommandText = @"SELECT SpiceName FROM spice WHERE SpiceName = $SpiceName";
+            command.Parameters.AddWithValue("$SpiceName", "Pfeffer");
+            using var reader = command.ExecuteReader();
+            while (reader.Read())
             {
-                SpiceModel spice = new SpiceModel();
-                connection.Open();
-                var command = connection.CreateCommand();
-                command.CommandText = @"SELECT SpiceName FROM spice WHERE SpiceName = $SpiceName";
-                command.Parameters.AddWithValue("$SpiceName", "Pfeffer");
-                using (var reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        var spiceName = reader.GetString(0);
-                        output = spiceName;
-                    }
-                }
+                var spiceName = reader.GetString(0);
+                output = spiceName;
             }
 
             return output;
         }
 
-        private void AddSalzToDatabaseInTableSpice()
+        private static void AddSalzToDatabaseInTableSpice()
         {
-            string sqlStatement = "INSERT INTO spice (SpiceName, ImagePath) " +
-                                  "VALUES (@SpiceName, @ImagePath)";
-            string connectionString = @"Data Source=.\remkobudb_test.db;";
+            const string sqlStatement = "INSERT INTO spice (SpiceName, ImagePath) " +
+                                        "VALUES (@SpiceName, @ImagePath)";
+            const string connectionString = @"Data Source=.\remkobudb_test.db;";
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
                 {"@SpiceName", "Salz"},

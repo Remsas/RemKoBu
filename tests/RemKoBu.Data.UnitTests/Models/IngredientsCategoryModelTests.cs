@@ -8,24 +8,24 @@ namespace RemKoBu.Data.UnitTests.Models
         [Test]
         public void PropertyIngredientsCategoryId_SetValue_StoresCorrectly()
         {
-            IngredientCategoryModel ingredientCategoryModel = new IngredientCategoryModel();
-            ingredientCategoryModel.IngredientsCategoryId = 111;
+            IngredientCategoryModel ingredientCategoryModel = new IngredientCategoryModel {IngredientsCategoryId = 111};
             Assert.AreEqual(111, ingredientCategoryModel.IngredientsCategoryId, 0, "stores incorrectly");
         }
 
         [Test]
         public void PropertyIngredientsCategoryName_SetValue_StoresCorrectly()
         {
-            IngredientCategoryModel ingredientCategoryModel = new IngredientCategoryModel();
-            ingredientCategoryModel.IngredientsCategoryName = "A category";
+            IngredientCategoryModel ingredientCategoryModel = new IngredientCategoryModel
+            {
+                IngredientsCategoryName = "A category"
+            };
             Assert.AreEqual("A category", ingredientCategoryModel.IngredientsCategoryName);
         }
 
         [Test]
         public void PropertyImagePath_SetValue_StoresCorrectly()
         {
-            IngredientCategoryModel ingredientCategoryModel = new IngredientCategoryModel();
-            ingredientCategoryModel.ImagePath = @"C:\good\path";
+            IngredientCategoryModel ingredientCategoryModel = new IngredientCategoryModel {ImagePath = @"C:\good\path"};
             Assert.AreEqual(@"C:\good\path", ingredientCategoryModel.ImagePath);
         }
     }

@@ -13,24 +13,20 @@ namespace RemKoBu.Core.DataAccess
         {
             DynamicParameters p = ToDynamicParameters(parameters);
 
-            using (IDbConnection cnn = new SqliteConnection(connectionName))
-            {
-                var rows = cnn.Query<T>(sqlStatement, p);
-                return rows.ToList();
-            }
+            using IDbConnection cnn = new SqliteConnection(connectionName);
+            var rows = cnn.Query<T>(sqlStatement, p);
+            return rows.ToList();
         }
 
         public void SaveData(string sqlStatement, Dictionary<string, object> parameters, string connectionName)
         {
             DynamicParameters p = ToDynamicParameters(parameters);
 
-            using (IDbConnection cnn = new SqliteConnection(connectionName))
-            {
-                cnn.Execute(sqlStatement, p);
-            }
+            using IDbConnection cnn = new SqliteConnection(connectionName);
+            cnn.Execute(sqlStatement, p);
         }
         
-        private DynamicParameters ToDynamicParameters(Dictionary<string, object> p)
+        private static DynamicParameters ToDynamicParameters(Dictionary<string, object> p)
         {
             DynamicParameters output = new DynamicParameters();
 
