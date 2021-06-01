@@ -36,7 +36,7 @@ namespace RemKoBu.TryOutCon
             sqliteDataAccess = new SqliteDataAccess();
             var spiceList =
                 sqliteDataAccess.LoadData<SpiceModel>(sql, new Dictionary<string, object>(), connectionString);
-            spiceList.ForEach(x => Console.WriteLine(x.spice_id + " " + x.spice_name + " " + x.image_path));
+            spiceList.ForEach(x => Console.WriteLine(x.SpiceId + " " + x.SpiceName + " " + x.ImagePath));
 
 
 

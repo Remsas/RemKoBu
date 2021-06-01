@@ -2,8 +2,8 @@
 {
     public class RecipeCategoryModel
     {
-        public int recipeCategory_id { get; set; }
-        public string recipeCategory_name { get; set; }
-        public string image_path { get; set; }
+        public int RecipeCategoryId { get; set; }
+        public string RecipeCategoryName { get; set; }
+        public string ImagePath { get; set; }
     }
 }

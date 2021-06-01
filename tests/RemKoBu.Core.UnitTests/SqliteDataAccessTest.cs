@@ -19,13 +19,13 @@ namespace RemKoBu.Core.UnitTests
         public void SaveData_InsertSpice_SpiceReadable()
         {
             // Arrange
-            string sqlStatement = "INSERT INTO spice (spice_name, image_path) " +
-                                  "VALUES (@spice_name, @image_path)";
+            string sqlStatement = "INSERT INTO spice (SpiceName, ImagePath) " +
+                                  "VALUES (@SpiceName, @ImagePath)";
             string connectionString = @"Data Source=.\remkobudb_test.db;";
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@spice_name", "Pfeffer"},
-                {"@image_path", @"der\pfad\zum\glueck"}
+                {"@SpiceName", "Pfeffer"},
+                {"@ImagePath", @"der\pfad\zum\glueck"}
             };
             string expected = "Pfeffer";
             IDataAccess sqliteDataAccess = new SqliteDataAccess();
@@ -42,13 +42,13 @@ namespace RemKoBu.Core.UnitTests
             // Arrange
             ObservableCollection<SpiceModel> spices = new ObservableCollection<SpiceModel>();
             string connectionString = @"Data Source=.\remkobudb_test.db;";
-            string sqlStatement = "SELECT spice_name FROM spice WHERE spice_name = 'Salz'";
+            string sqlStatement = "SELECT SpiceName FROM spice WHERE SpiceName = 'Salz'";
             AddSalzToDatabaseInTableSpice();
             IDataAccess sqliteDataAccess = new SqliteDataAccess();
             // Act
             var spiceList =
                 sqliteDataAccess.LoadData<SpiceModel>(sqlStatement, new Dictionary<string, object>(), connectionString);
-            string actual = spiceList[0].spice_name;
+            string actual = spiceList[0].SpiceName;
             // Assert
             StringAssert.AreEqualIgnoringCase("Salz", actual);
         }
@@ -62,8 +62,8 @@ namespace RemKoBu.Core.UnitTests
                 SpiceModel spice = new SpiceModel();
                 connection.Open();
                 var command = connection.CreateCommand();
-                command.CommandText = @"SELECT spice_name FROM spice WHERE spice_name = $spice_name";
-                command.Parameters.AddWithValue("$spice_name", "Pfeffer");
+                command.CommandText = @"SELECT SpiceName FROM spice WHERE SpiceName = $SpiceName";
+                command.Parameters.AddWithValue("$SpiceName", "Pfeffer");
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -79,13 +79,13 @@ namespace RemKoBu.Core.UnitTests
 
         private void AddSalzToDatabaseInTableSpice()
         {
-            string sqlStatement = "INSERT INTO spice (spice_name, image_path) " +
-                                  "VALUES (@spice_name, @image_path)";
+            string sqlStatement = "INSERT INTO spice (SpiceName, ImagePath) " +
+                                  "VALUES (@SpiceName, @ImagePath)";
             string connectionString = @"Data Source=.\remkobudb_test.db;";
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@spice_name", "Salz"},
-                {"@image_path", @"der\pfad\zum\glueck"}
+                {"@SpiceName", "Salz"},
+                {"@ImagePath", @"der\pfad\zum\glueck"}
             };
             IDataAccess sqliteDataAccess = new SqliteDataAccess();
             sqliteDataAccess.SaveData(sqlStatement, parameters, connectionString);

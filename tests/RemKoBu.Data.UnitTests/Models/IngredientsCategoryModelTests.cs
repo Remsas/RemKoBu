@@ -8,25 +8,25 @@ namespace RemKoBu.Data.UnitTests.Models
         [Test]
         public void PropertyIngredientsCategoryId_SetValue_StoresCorrectly()
         {
-            IngredientsCategoryModel ingredientsCategoryModel = new IngredientsCategoryModel();
-            ingredientsCategoryModel.ingredientsCategory_id = 111;
-            Assert.AreEqual(111, ingredientsCategoryModel.ingredientsCategory_id, 0, "stores incorrectly");
+            IngredientCategoryModel ingredientCategoryModel = new IngredientCategoryModel();
+            ingredientCategoryModel.IngredientsCategoryId = 111;
+            Assert.AreEqual(111, ingredientCategoryModel.IngredientsCategoryId, 0, "stores incorrectly");
         }
 
         [Test]
         public void PropertyIngredientsCategoryName_SetValue_StoresCorrectly()
         {
-            IngredientsCategoryModel ingredientsCategoryModel = new IngredientsCategoryModel();
-            ingredientsCategoryModel.ingredientsCategory_name = "A category";
-            Assert.AreEqual("A category", ingredientsCategoryModel.ingredientsCategory_name);
+            IngredientCategoryModel ingredientCategoryModel = new IngredientCategoryModel();
+            ingredientCategoryModel.IngredientsCategoryName = "A category";
+            Assert.AreEqual("A category", ingredientCategoryModel.IngredientsCategoryName);
         }
 
         [Test]
         public void PropertyImagePath_SetValue_StoresCorrectly()
         {
-            IngredientsCategoryModel ingredientsCategoryModel = new IngredientsCategoryModel();
-            ingredientsCategoryModel.image_path = @"C:\good\path";
-            Assert.AreEqual(@"C:\good\path", ingredientsCategoryModel.image_path);
+            IngredientCategoryModel ingredientCategoryModel = new IngredientCategoryModel();
+            ingredientCategoryModel.ImagePath = @"C:\good\path";
+            Assert.AreEqual(@"C:\good\path", ingredientCategoryModel.ImagePath);
         }
     }
 }

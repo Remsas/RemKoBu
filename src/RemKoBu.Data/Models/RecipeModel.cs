@@ -2,16 +2,16 @@
 {
     public class RecipeModel
     {
-        public int recipe_id { get; set; }
-        public string recipe_name { get; set; }
-        public int preperationtime_in_minutes { get; set; }
-        public string method { get; set; }
-        public int rating { get; set; }
-        public int cooked { get; set; }
-        public string image_path { get; set; }
-        public int difficulty_level { get; set; }
-        public int marked_for_cooking { get; set; }
-        public int serving_count { get; set; }
-        public string serving_type { get; set; }
+        public int RecipeId { get; set; }
+        public string RecipeName { get; set; }
+        public int PreperationtimeInMinutes { get; set; }
+        public string Method { get; set; }
+        public int Rating { get; set; }
+        public int Cooked { get; set; }
+        public string ImagePath { get; set; }
+        public int DifficultyLevel { get; set; }
+        public int MarkedForCooking { get; set; }
+        public int ServingAmount { get; set; }
+        public string ServingType { get; set; }
     }
 }
