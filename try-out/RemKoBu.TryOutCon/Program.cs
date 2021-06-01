@@ -25,15 +25,17 @@ namespace RemKoBu.TryOutCon
                 {"@image_path", @"der\pfad\zum\glueck"}
             };
 
-            SqliteDataAccess.SaveData(sql, parameters, connectionString);
+            IDataAccess sqliteDataAccess = new SqliteDataAccess();
+            sqliteDataAccess.SaveData(sql, parameters, connectionString);
 
 
             // Aus der Datenbank lesen
             ObservableCollection<SpiceModel> spices = new ObservableCollection<SpiceModel>();
 
             sql = "SELECT * FROM spice ORDER BY spice_name COLLATE NOCASE ASC";
+            sqliteDataAccess = new SqliteDataAccess();
             var spiceList =
-                SqliteDataAccess.LoadData<SpiceModel>(sql, new Dictionary<string, object>(), connectionString);
+                sqliteDataAccess.LoadData<SpiceModel>(sql, new Dictionary<string, object>(), connectionString);
             spiceList.ForEach(x => Console.WriteLine(x.spice_id + " " + x.spice_name + " " + x.image_path));
 
 

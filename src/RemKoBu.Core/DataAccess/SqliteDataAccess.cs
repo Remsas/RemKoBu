@@ -6,12 +6,12 @@ using Microsoft.Data.Sqlite;
 
 namespace RemKoBu.Core.DataAccess
 {
-    public static class SqliteDataAccess
+    public class SqliteDataAccess : IDataAccess
     {
-        public static List<T> LoadData<T>(string sqlStatement, Dictionary<string, object> parameters,
+        public List<T> LoadData<T>(string sqlStatement, Dictionary<string, object> parameters,
             string connectionName)
         {
-            DynamicParameters p = parameters.ToDynamicParameters();
+            DynamicParameters p = ToDynamicParameters(parameters);
 
             using (IDbConnection cnn = new SqliteConnection(connectionName))
             {
@@ -20,9 +20,9 @@ namespace RemKoBu.Core.DataAccess
             }
         }
 
-        public static void SaveData(string sqlStatement, Dictionary<string, object> parameters, string connectionName)
+        public void SaveData(string sqlStatement, Dictionary<string, object> parameters, string connectionName)
         {
-            DynamicParameters p = parameters.ToDynamicParameters();
+            DynamicParameters p = ToDynamicParameters(parameters);
 
             using (IDbConnection cnn = new SqliteConnection(connectionName))
             {
@@ -30,7 +30,7 @@ namespace RemKoBu.Core.DataAccess
             }
         }
         
-        private static DynamicParameters ToDynamicParameters(this Dictionary<string, object> p)
+        private DynamicParameters ToDynamicParameters(Dictionary<string, object> p)
         {
             DynamicParameters output = new DynamicParameters();
 

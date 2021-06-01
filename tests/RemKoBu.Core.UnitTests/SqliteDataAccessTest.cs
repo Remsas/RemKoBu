@@ -28,8 +28,9 @@ namespace RemKoBu.Core.UnitTests
                 {"@image_path", @"der\pfad\zum\glueck"}
             };
             string expected = "Pfeffer";
+            IDataAccess sqliteDataAccess = new SqliteDataAccess();
             // Act
-            SqliteDataAccess.SaveData(sqlStatement, parameters,connectionString);
+            sqliteDataAccess.SaveData(sqlStatement, parameters,connectionString);
             string actual = ReadPfefferFromDatabaseInTableSpice();
             // Assert
             StringAssert.AreEqualIgnoringCase(expected, actual);
@@ -43,9 +44,10 @@ namespace RemKoBu.Core.UnitTests
             string connectionString = @"Data Source=.\remkobudb_test.db;";
             string sqlStatement = "SELECT spice_name FROM spice WHERE spice_name = 'Salz'";
             AddSalzToDatabaseInTableSpice();
+            IDataAccess sqliteDataAccess = new SqliteDataAccess();
             // Act
             var spiceList =
-                SqliteDataAccess.LoadData<SpiceModel>(sqlStatement, new Dictionary<string, object>(), connectionString);
+                sqliteDataAccess.LoadData<SpiceModel>(sqlStatement, new Dictionary<string, object>(), connectionString);
             string actual = spiceList[0].spice_name;
             // Assert
             StringAssert.AreEqualIgnoringCase("Salz", actual);
@@ -85,7 +87,8 @@ namespace RemKoBu.Core.UnitTests
                 {"@spice_name", "Salz"},
                 {"@image_path", @"der\pfad\zum\glueck"}
             };
-            SqliteDataAccess.SaveData(sqlStatement, parameters, connectionString);
+            IDataAccess sqliteDataAccess = new SqliteDataAccess();
+            sqliteDataAccess.SaveData(sqlStatement, parameters, connectionString);
         }
     }
 }
