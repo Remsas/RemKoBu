@@ -2,8 +2,8 @@
 {
     public class IngredientCategoryModel
     {
-        public int IngredientsCategoryId { get; set; }
-        public string IngredientsCategoryName { get; set; }
+        public int IngredientCategoryId { get; set; }
+        public string IngredientCategoryName { get; set; }
         public string ImagePath { get; set; }
     }
 }
