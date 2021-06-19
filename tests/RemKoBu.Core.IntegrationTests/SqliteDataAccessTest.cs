@@ -4,7 +4,7 @@ using NUnit.Framework;
 using RemKoBu.Core.DataAccess;
 using RemKoBu.Data.Models;
 
-namespace RemKoBu.Core.UnitTests
+namespace RemKoBu.Core.IntegrationTests
 {
     public class SqliteDataAccessTest
     {

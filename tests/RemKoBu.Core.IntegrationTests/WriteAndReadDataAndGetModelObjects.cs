@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using NUnit.Framework;
@@ -11,14 +10,14 @@ namespace RemKoBu.Core.IntegrationTests
 {
     public class WriteAndReadDataAndGetModelObjects
     {
-        private string _connectionString = @"Data Source=.\remkobudb_test.db;";
+        private const string ConnectionString = @"Data Source=.\remkobudb_test.db;";
         private readonly IDataAccess _sqlDataAccess = new SqliteDataAccess();
         
         [Test]
         public void TableIngredient_WriteData_ReadDataAndGetIngredientModelObject()
         {
             // Arrange
-            IngredientModel ingredientModelInput = new IngredientModel()
+            IngredientModel ingredientModelInput = new IngredientModel
             {
                 IngredientId = 111,
                 IngredientCategoryId = 222,
@@ -51,20 +50,20 @@ namespace RemKoBu.Core.IntegrationTests
             };
 
             // Act
-            _sqlDataAccess.SaveData(sqlStatementSaveData, parameters, _connectionString);
+            _sqlDataAccess.SaveData(sqlStatementSaveData, parameters, ConnectionString);
             List<IngredientModel> ingredientModelsList = _sqlDataAccess.LoadData<IngredientModel>(sqlStatementLoadData,
-                new Dictionary<string, object>(), _connectionString);
+                new Dictionary<string, object>(), ConnectionString);
             ingredientModelsList.ForEach(x => ingredientModelsCollection.Add(x));
             IngredientModel ingredientModelOutput = ingredientModelsCollection.First();
 
             // Assert
-            Assert.AreEqual(111, (double)ingredientModelOutput.IngredientId, 0, "wrong value in IngredientId");
-            Assert.AreEqual(222, (double)ingredientModelOutput.IngredientCategoryId, 0, "wrong value in IngredientCategoryId");
+            Assert.AreEqual(111, ingredientModelOutput.IngredientId, 0, "wrong value in IngredientId");
+            Assert.AreEqual(222, ingredientModelOutput.IngredientCategoryId, 0, "wrong value in IngredientCategoryId");
             Assert.AreEqual("An ingredient", ingredientModelOutput.IngredientName);
-            Assert.AreEqual(333, (double)ingredientModelOutput.KcalPer100G, 0, "wrong value in KcalPer100G");
-            Assert.AreEqual(444, (double)ingredientModelOutput.ChPer100G, 0, "wrong value in ChPer100G");
-            Assert.AreEqual(555, (double)ingredientModelOutput.PrPer100G, 0, "wrong value in PrPer100G");
-            Assert.AreEqual(666, (double)ingredientModelOutput.FatPer100G, 0, "wrong value in FatPer100G");
+            Assert.AreEqual(333, ingredientModelOutput.KcalPer100G, 0, "wrong value in KcalPer100G");
+            Assert.AreEqual(444, ingredientModelOutput.ChPer100G, 0, "wrong value in ChPer100G");
+            Assert.AreEqual(555, ingredientModelOutput.PrPer100G, 0, "wrong value in PrPer100G");
+            Assert.AreEqual(666, ingredientModelOutput.FatPer100G, 0, "wrong value in FatPer100G");
             Assert.AreEqual(@"C:\path\to\heaven", ingredientModelOutput.ImagePath);
         }
 
@@ -72,7 +71,7 @@ namespace RemKoBu.Core.IntegrationTests
         public void TableIngredientCategory_WriteData_ReadDataAndGetIngredientCategoryModelObject()
         {
             // Arrange
-            IngredientCategoryModel ingredientCategoryModelInput = new IngredientCategoryModel()
+            IngredientCategoryModel ingredientCategoryModelInput = new IngredientCategoryModel
             {
                 IngredientCategoryId = 111,
                 IngredientCategoryName = "A category name",
@@ -93,14 +92,14 @@ namespace RemKoBu.Core.IntegrationTests
             };
 
             // Act
-            _sqlDataAccess.SaveData(sqlStatementSaveData, parameters, _connectionString);
+            _sqlDataAccess.SaveData(sqlStatementSaveData, parameters, ConnectionString);
             List<IngredientCategoryModel> ingredientCategoryModelsList = _sqlDataAccess.LoadData<IngredientCategoryModel>(sqlStatementLoadData,
-                new Dictionary<string, object>(), _connectionString);
+                new Dictionary<string, object>(), ConnectionString);
             ingredientCategoryModelsList.ForEach(x => ingredientCategoryModelsCollection.Add(x));
             IngredientCategoryModel ingredientCategoryModelOutput = ingredientCategoryModelsCollection.First();
 
             // Assert
-            Assert.AreEqual(111, (double)ingredientCategoryModelOutput.IngredientCategoryId, 0, "wrong value in IngredientCategoryId");
+            Assert.AreEqual(111, ingredientCategoryModelOutput.IngredientCategoryId, 0, "wrong value in IngredientCategoryId");
             Assert.AreEqual("A category name", ingredientCategoryModelOutput.IngredientCategoryName);
             Assert.AreEqual(@"C:\path\to\hell", ingredientCategoryModelOutput.ImagePath);
         }
@@ -109,7 +108,7 @@ namespace RemKoBu.Core.IntegrationTests
         public void TableRecipe_WriteData_ReadDataAndGetRecipeModelObject()
         {
             // Arrange
-            RecipeModel recipeModelInput = new RecipeModel()
+            RecipeModel recipeModelInput = new RecipeModel
             {
                 RecipeId = 111,
                 RecipeName = "A recipe name",
@@ -150,14 +149,14 @@ namespace RemKoBu.Core.IntegrationTests
             };
 
             // Act
-            _sqlDataAccess.SaveData(sqlStatementSaveData, parameters, _connectionString);
+            _sqlDataAccess.SaveData(sqlStatementSaveData, parameters, ConnectionString);
             List<RecipeModel> recipeModelsList = _sqlDataAccess.LoadData<RecipeModel>(sqlStatementLoadData,
-                new Dictionary<string, object>(), _connectionString);
+                new Dictionary<string, object>(), ConnectionString);
             recipeModelsList.ForEach(x => recipeModelCollection.Add(x));
             RecipeModel recipeModelOutput = recipeModelCollection.First();
 
             // Assert
-            Assert.AreEqual(111, (double)recipeModelOutput.RecipeId, 0, "wrong value in RecipeId");
+            Assert.AreEqual(111, recipeModelOutput.RecipeId, 0, "wrong value in RecipeId");
             Assert.AreEqual("A recipe name", recipeModelOutput.RecipeName);
             Assert.AreEqual(222, recipeModelOutput.PreperationtimeInMinutes, 0, "wrong value in PreperationtimeInMinutes");
             Assert.AreEqual("The steps to cook this recipe", recipeModelOutput.Method);
@@ -174,7 +173,7 @@ namespace RemKoBu.Core.IntegrationTests
         public void TableRecipeCategory_WriteData_ReadDataAndGetRecipeCategoryModelObject()
         {
             // Arrange
-            RecipeCategoryModel recipeCategoryModelInput = new RecipeCategoryModel()
+            RecipeCategoryModel recipeCategoryModelInput = new RecipeCategoryModel
             {
                 RecipeCategoryId = 111,
                 RecipeCategoryName = "A category name",
@@ -196,9 +195,9 @@ namespace RemKoBu.Core.IntegrationTests
             };
 
             // Act
-            _sqlDataAccess.SaveData(sqlStatementSaveData, parameters, _connectionString);
+            _sqlDataAccess.SaveData(sqlStatementSaveData, parameters, ConnectionString);
             List<RecipeCategoryModel> recipeCategoryModelList = _sqlDataAccess.LoadData<RecipeCategoryModel>(sqlStatementLoadData,
-                new Dictionary<string, object>(), _connectionString);
+                new Dictionary<string, object>(), ConnectionString);
             recipeCategoryModelList.ForEach(x => recipeCategoryModelCollection.Add(x));
             RecipeCategoryModel recipeCategoryModelOutput = recipeCategoryModelCollection.First();
 
@@ -212,7 +211,7 @@ namespace RemKoBu.Core.IntegrationTests
         public void TableRecipeIngredient_WriteData_ReadDataAndGetRecipeIngredientModelObject()
         {
             // Arrange
-            RecipeIngredientModel recipeIngredientModelInput = new RecipeIngredientModel()
+            RecipeIngredientModel recipeIngredientModelInput = new RecipeIngredientModel
             {
                 RecipeIngredientId = 111,
                 RecipeId = 222,
@@ -241,8 +240,8 @@ namespace RemKoBu.Core.IntegrationTests
             };
 
             // Act
-            _sqlDataAccess.SaveData(sqlStatementSaveData, parameters, _connectionString);
-            List<RecipeIngredientModel> recipeIngredientModelList = _sqlDataAccess.LoadData<RecipeIngredientModel>(sqlStatementLoadData, new Dictionary<string, object>(), _connectionString);
+            _sqlDataAccess.SaveData(sqlStatementSaveData, parameters, ConnectionString);
+            List<RecipeIngredientModel> recipeIngredientModelList = _sqlDataAccess.LoadData<RecipeIngredientModel>(sqlStatementLoadData, new Dictionary<string, object>(), ConnectionString);
             recipeIngredientModelList.ForEach(x => recipeIngredientModelCollection.Add(x));
             RecipeIngredientModel recipeIngredientModelOutput = recipeIngredientModelCollection.First();
 
@@ -259,7 +258,7 @@ namespace RemKoBu.Core.IntegrationTests
         public void TableRecipeRecipeCategory_WriteData_ReadDataAndGetRecipeIngredientModelObject()
         {
             // Arrange
-            RecipeRecipeCategoryModel rrcmInput = new RecipeRecipeCategoryModel()
+            RecipeRecipeCategoryModel rrcmInput = new RecipeRecipeCategoryModel
             {
                 RecipeRecipeCategoryId = 111,
                 RecipeId = 222,
@@ -281,8 +280,8 @@ namespace RemKoBu.Core.IntegrationTests
             };
 
             // Act
-            _sqlDataAccess.SaveData(sqlStatementSaveData, parameters, _connectionString);
-            List<RecipeRecipeCategoryModel> rrcmList = _sqlDataAccess.LoadData<RecipeRecipeCategoryModel>(sqlStatementLoadData, new Dictionary<string, object>(), _connectionString);
+            _sqlDataAccess.SaveData(sqlStatementSaveData, parameters, ConnectionString);
+            List<RecipeRecipeCategoryModel> rrcmList = _sqlDataAccess.LoadData<RecipeRecipeCategoryModel>(sqlStatementLoadData, new Dictionary<string, object>(), ConnectionString);
             rrcmList.ForEach(x => rrcmCollection.Add(x));
             RecipeRecipeCategoryModel rrcmOutput = rrcmCollection.First();
 
@@ -296,7 +295,7 @@ namespace RemKoBu.Core.IntegrationTests
         public void TableRecipeSpice_WriteData_ReadDataAndGetRecipeSpiceModelObject()
         {
             // Arrange
-            RecipeSpiceModel rsmInput = new RecipeSpiceModel()
+            RecipeSpiceModel rsmInput = new RecipeSpiceModel
             {
                 RecipeSpiceId = 111,
                 RecipeId = 222,
@@ -321,8 +320,8 @@ namespace RemKoBu.Core.IntegrationTests
             };
 
             // Act
-            _sqlDataAccess.SaveData(sqlStatementSaveData, parameters, _connectionString);
-            List<RecipeSpiceModel> rsmList = _sqlDataAccess.LoadData<RecipeSpiceModel>(sqlStatementLoadData, new Dictionary<string, object>(), _connectionString);
+            _sqlDataAccess.SaveData(sqlStatementSaveData, parameters, ConnectionString);
+            List<RecipeSpiceModel> rsmList = _sqlDataAccess.LoadData<RecipeSpiceModel>(sqlStatementLoadData, new Dictionary<string, object>(), ConnectionString);
             rsmList.ForEach(x => rsmCollection.Add(x));
             RecipeSpiceModel rsmOutput = rsmCollection.First();
 
@@ -338,7 +337,7 @@ namespace RemKoBu.Core.IntegrationTests
         public void TableSpice_WriteData_ReadDataAndGetSpiceModelObject()
         {
             // Arrange
-            SpiceModel smInput = new SpiceModel()
+            SpiceModel smInput = new SpiceModel
             {
                 SpiceId = 111,
                 SpiceName = "a spice name",
@@ -359,8 +358,8 @@ namespace RemKoBu.Core.IntegrationTests
             };
 
             // Act
-            _sqlDataAccess.SaveData(sqlStatementSaveData, parameters, _connectionString);
-            List<SpiceModel> smList = _sqlDataAccess.LoadData<SpiceModel>(sqlStatementLoadData, new Dictionary<string, object>(), _connectionString);
+            _sqlDataAccess.SaveData(sqlStatementSaveData, parameters, ConnectionString);
+            List<SpiceModel> smList = _sqlDataAccess.LoadData<SpiceModel>(sqlStatementLoadData, new Dictionary<string, object>(), ConnectionString);
             smList.ForEach(x => smCollection.Add(x));
             SpiceModel smOutput = smCollection.First();
 

@@ -5,9 +5,9 @@ using RemKoBu.Data.Models;
 
 namespace RemKoBu.TryOutCon
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             const string connectionString = @"Data Source=.\remkobudb.db;";
 
